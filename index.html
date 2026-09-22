@@ -9,7 +9,6 @@
 
     :root {
       --primary-yellow: #f4d03f;
-      --accent-gold: #e5b836;
       --bg-cream: #fbf9f5;
       --bg-card: #ffffff;
       --text-main: #2b231f;
@@ -34,7 +33,7 @@
     /* HEADER */
     header {
       background-color: var(--primary-yellow);
-      padding: 18px 24px;
+      padding: 16px 24px;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -48,19 +47,21 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: var(--text-main);
     }
 
     .logo-circle {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       background: var(--dark-brown);
       color: var(--primary-yellow);
       border-radius: 50%;
@@ -69,30 +70,23 @@
       justify-content: center;
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       letter-spacing: 1px;
     }
 
     .logo-text h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       line-height: 1.1;
     }
 
-    .logo-text span {
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      font-weight: 600;
-      color: var(--text-muted);
-      text-transform: uppercase;
-    }
-
     nav {
       display: flex;
-      gap: 8px;
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
     nav button {
@@ -101,8 +95,8 @@
       font-family: inherit;
       color: var(--text-main);
       font-weight: 600;
-      font-size: 0.9rem;
-      padding: 8px 16px;
+      font-size: 0.88rem;
+      padding: 6px 14px;
       border-radius: 20px;
       cursor: pointer;
       transition: background 0.2s;
@@ -170,9 +164,7 @@
       transition: opacity 0.2s;
     }
 
-    .btn-main:hover {
-      opacity: 0.9;
-    }
+    .btn-main:hover { opacity: 0.9; }
 
     .btn-outline {
       background: transparent;
@@ -187,9 +179,7 @@
       transition: border-color 0.2s;
     }
 
-    .btn-outline:hover {
-      border-color: var(--dark-brown);
-    }
+    .btn-outline:hover { border-color: var(--dark-brown); }
 
     .hero-img-box {
       border-radius: 20px;
@@ -205,7 +195,7 @@
       display: block;
     }
 
-    /* INSTAGRAM FEED / PRODUCTS GRID */
+    /* PRODUCTS GRID */
     .container-section {
       max-width: 1100px;
       margin: 60px auto;
@@ -281,7 +271,53 @@
       color: var(--text-muted);
     }
 
-    /* CONTACT SECTION */
+    /* LOCATION & ABOUT PAGES */
+    .page-content-box {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 24px;
+    }
+
+    .hidden-gem-banner {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 24px;
+      color: var(--dark-brown);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .content-prose {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .content-prose p {
+      margin-bottom: 18px;
+    }
+
+    .content-prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* CONTACT / LOCATION LAYOUT */
     .contact-layout {
       max-width: 1100px;
       margin: 40px auto;
@@ -347,9 +383,7 @@
       text-decoration: none;
     }
 
-    .detail-block a:hover {
-      text-decoration: underline;
-    }
+    .detail-block a:hover { text-decoration: underline; }
 
     .msg-form {
       margin-top: 24px;
@@ -404,12 +438,14 @@
         <div class="logo-circle">RISE</div>
         <div class="logo-text">
           <h1>Rise Bakery</h1>
-          <span>Amsterdam</span>
         </div>
       </a>
       <nav>
         <button id="btn-home" class="active" onclick="navigate('home')">Home</button>
-        <button id="btn-contact" onclick="navigate('contact')">Location & Contact</button>
+        <button id="btn-about" onclick="navigate('about')">About Us</button>
+        <button id="btn-location" onclick="navigate('location')">Location</button>
+        <button id="btn-bakery" onclick="navigate('bakery')">Bakery</button>
+        <button id="btn-contact" onclick="navigate('contact')">Contact</button>
       </nav>
     </div>
   </header>
@@ -419,14 +455,13 @@
     <section class="hero">
       <div class="hero-text">
         <h2>Artisan Sourdough & Craft Pastries in De Pijp</h2>
-        <p>Handcrafted daily right behind the Albert Cuyp market[cite: 4]. Long fermentation, organic flours, and pure French butter baked with absolute passion.</p>
+        <p>Handcrafted daily right behind the Albert Cuyp market[cite: 4, 5]. Long fermentation, organic flours, and pure French butter baked with absolute passion.</p>
         <div class="hero-buttons">
-          <button class="btn-main" onclick="window.scrollTo({top: 550, behavior: 'smooth'})">Explore Counter</button>
-          <button class="btn-outline" onclick="navigate('contact')">Visit Us</button>
+          <button class="btn-main" onclick="navigate('bakery')">Explore Counter</button>
+          <button class="btn-outline" onclick="navigate('location')">Visit Us</button>
         </div>
       </div>
       <div class="hero-img-box">
-        <!-- Immagine ispirata allo stile caldo e artigianale del feed -->
         <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=80" alt="Rise Bakery Craft Breads">
       </div>
     </section>
@@ -434,7 +469,7 @@
     <section class="container-section">
       <div class="section-heading">
         <h3>Fresh From Our Ovens</h3>
-        <p>Made fresh every morning from Wednesday through Sunday.</p>
+        <p>Handmade daily with top quality ingredients.</p>
       </div>
 
       <div class="grid-cards">
@@ -445,7 +480,7 @@
               <span class="item-title">Signature Country Sourdough</span>
               <span class="item-price">€6.50</span>
             </div>
-            <p class="item-desc">Natural 48-hour fermentation yielding a crisp caramelized crust and open, airy crumb.</p>
+            <p class="item-desc">Natural 48-hour fermentation yielding a crisp caramelized crust and open crumb.</p>
           </div>
         </div>
 
@@ -474,7 +509,78 @@
     </section>
   </div>
 
-  <!-- CONTACT / LOCATION VIEW -->
+  <!-- ABOUT US VIEW -->
+  <div id="view-about" class="section-view">
+    <div class="page-content-box">
+      <h2 class="page-title">About Rise Bakery</h2>
+      <div class="content-prose">
+        <p>We are a dedicated artisan micro-bakery rooted in the vibrant heart of Amsterdam's De Pijp neighborhood[cite: 5]. Our philosophy is simple: time, patience, and uncompromising ingredients.</p>
+        <p>Every loaf of sourdough undergoes an extended slow fermentation process to unlock deep, complex flavors and ensure maximum digestibility. We source organic stone-milled flours and authentic European butter to craft pastries that honor traditional French techniques with a modern Amsterdam soul.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCATION VIEW (Preserving the exact copy from your screenshot) -->
+  <div id="view-location" class="section-view">
+    <div class="page-content-box">
+      <h2 class="page-title">The Hidden Gem!!</h2>
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80" alt="Albert Cuyp Market Area" class="hidden-gem-banner">
+      
+      <div class="content-prose">
+        <p>We are located just behind the market stalls and therefore we refer to ourselves as the hidden gem as you need to know us to find us, and when you do, you will be pleasantly surprised :)</p>
+        <p>One of the most popular markets of Amsterdam, Albert Cuypstraat Market. I am sure you have already heard of it!</p>
+        <p>The Albert Cuyp is in the heart of De Pijp, a vibrant 19th-century neighborhood and has evolved into one of the most lively areas of Amsterdam[cite: 5].</p>
+        <p>The market is the biggest in Europe, and it has such a great atmosphere.</p>
+        <p>Shopping on an empty stomach is never fun so don't forget to stop by us for a quick bite before continuing down the street.</p>
+        <p style="font-weight: 700; color: var(--dark-brown);">Support small local businesses!!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BAKERY VIEW -->
+  <div id="view-bakery" class="section-view">
+    <div class="container-section" style="margin-top: 40px;">
+      <div class="section-heading">
+        <h3>Our Daily Bakery Selection</h3>
+        <p>Baked fresh with passion and patience.</p>
+      </div>
+
+      <div class="grid-cards">
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" class="item-img" alt="Country Sourdough">
+          <div class="item-body">
+            <div class="item-top">
+              <span class="item-title">Country Sourdough</span>
+              <span class="item-price">€6.50</span>
+            </div>
+            <p class="item-desc">Organic wheat & rye flour, 48-hour slow fermentation.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" class="item-img" alt="Croissant">
+          <div class="item-body">
+            <div class="item-top">
+              <span class="item-title">Butter Croissant</span>
+              <span class="item-price">€3.20</span>
+            </div>
+            <p class="item-desc">Flaky, buttery French viennoiserie.</p>
+          </div>
+        </div>
+        <div class="item-card">
+          <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=600&q=80" class="item-img" alt="Cardamom Bun">
+          <div class="item-body">
+            <div class="item-top">
+              <span class="item-title">Cardamom Bun</span>
+              <span class="item-price">€3.80</span>
+            </div>
+            <p class="item-desc">Sweet brioche knot infused with fresh cardamom.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT VIEW (Con orari aggiornati) -->
   <div id="view-contact" class="section-view">
     <main class="contact-layout">
       <div class="left-store-card">
@@ -487,11 +593,11 @@
       </div>
 
       <div class="right-contact-box">
-        <h2>Visit & Connect</h2>
+        <h2>Get in Touch</h2>
 
         <div class="detail-block">
           <h4>Address</h4>
-          <p>Albert Cuypstraat 208 H<br>1073 BM Amsterdam (De Pijp)[cite: 4]</p>
+          <p>Albert Cuypstraat 208 H<br>1073 BM Amsterdam (De Pijp)[cite: 4, 5]</p>
         </div>
 
         <div class="detail-block">
@@ -501,7 +607,11 @@
 
         <div class="detail-block">
           <h4>Opening Hours</h4>
-          <p>Wednesday – Sunday: 08:00 – 16:00<br>Monday & Tuesday: Closed</p>
+          <p>
+            Monday, Tuesday, Friday, Saturday: 08:00 – 15:00<br>
+            Sunday: 09:30 – 15:00<br>
+            Wednesday & Thursday: Closed
+          </p>
         </div>
 
         <form class="msg-form" onsubmit="event.preventDefault(); alert('Message sent successfully! We will get back to you soon.');">
@@ -524,7 +634,7 @@
   </div>
 
   <footer>
-    <p>© 2026 Rise Bakery Amsterdam — Albert Cuypstraat 208 H, 1073 BM Amsterdam[cite: 4]</p>
+    <p>© 2026 Rise Bakery Amsterdam — Albert Cuypstraat 208 H, 1073 BM Amsterdam[cite: 4, 5]</p>
   </footer>
 
   <script>
