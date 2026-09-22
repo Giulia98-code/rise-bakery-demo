@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us // Rise Bakery Amsterdam</title>
+  <title>Rise Bakery Amsterdam // Artisan Sourdough & Pastries</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
 
     :root {
       --bg-yellow: #f8db66;
-      --bg-body: #fcf9f5;
+      --bg-cream: #faf7f2;
+      --card-bg: #ffffff;
       --text-dark: #2c221e;
-      --text-muted: #5c524b;
+      --text-muted: #6e6259;
       --accent-brown: #4a382e;
-      --border-light: #e0d5c5;
+      --accent-terracotta: #c86d51;
+      --border-light: #e8e1d7;
     }
 
     * {
@@ -23,17 +25,23 @@
     }
 
     body {
-      background-color: var(--bg-body);
+      background-color: var(--bg-cream);
       color: var(--text-dark);
       font-family: 'Plus Jakarta Sans', sans-serif;
       line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    /* HEADER IN STILE RISE BAKERY */
+    /* HEADER ORIGINAL BRAND STYLE */
     header {
       background-color: var(--bg-yellow);
-      padding: 20px 24px;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .header-container {
@@ -42,50 +50,229 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
+      gap: 16px;
     }
 
     .brand-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       color: var(--text-dark);
       text-decoration: none;
       text-transform: uppercase;
       text-align: center;
+      cursor: pointer;
     }
 
     .brand-subtitle {
       display: block;
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      margin-top: -5px;
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      margin-top: -6px;
+      font-weight: 600;
     }
 
     nav ul {
       display: flex;
       list-style: none;
-      gap: 20px;
+      gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
-    nav a {
+    nav button {
+      background: none;
+      border: none;
       text-decoration: none;
       color: var(--text-dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
-      padding: 4px 12px;
-      border-radius: 4px;
-      transition: background 0.2s;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
     }
 
-    nav a.active, nav a:hover {
-      background: rgba(0, 0, 0, 0.08);
+    nav button.active, nav button:hover {
+      background: rgba(0, 0, 0, 0.1);
     }
 
-    /* CONTENUTO PRINCIPALE CONTATTI */
+    /* VIEW MANAGEMENT */
+    .view-section {
+      display: none;
+      flex: 1;
+    }
+
+    .view-section.active-view {
+      display: block;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      line-height: 1.18;
+      margin-bottom: 18px;
+      color: var(--text-dark);
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent-brown);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #32251e;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--text-dark);
+      border: 1px solid var(--border-light);
+      padding: 14px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+      height: 440px;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .location-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    /* FEATURED BAKERY PRODUCTS */
+    .menu-section {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+    }
+
+    .card-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .card-price {
+      font-weight: 700;
+      color: var(--accent-terracotta);
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* CONTACT VIEW STYLES */
     .contact-container {
       max-width: 1100px;
       margin: 50px auto;
@@ -106,7 +293,7 @@
 
     .store-img {
       width: 100%;
-      height: 320px;
+      height: 300px;
       object-fit: cover;
       display: block;
     }
@@ -133,7 +320,7 @@
     }
 
     .info-group {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .info-group h3 {
@@ -141,11 +328,11 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .info-group p, .info-group a {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 500;
       color: var(--text-dark);
       text-decoration: none;
@@ -155,132 +342,204 @@
       text-decoration: underline;
     }
 
-    /* FORM DI CONTATTO PULITO */
     .contact-form {
-      margin-top: 30px;
-      padding-top: 24px;
+      margin-top: 24px;
+      padding-top: 20px;
       border-top: 1px solid var(--border-light);
     }
 
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .form-group label {
       display: block;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .form-group input, .form-group textarea {
       width: 100%;
-      padding: 12px;
+      padding: 10px 14px;
       border: 1px solid var(--border-light);
       border-radius: 8px;
-      background: var(--bg-body);
+      background: var(--bg-cream);
       font-family: inherit;
       font-size: 0.95rem;
     }
 
-    .btn-send {
-      background: var(--accent-brown);
-      color: #ffffff;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: background 0.2s;
+    /* FOOTER */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border-light);
+      padding: 30px 24px;
+      text-align: center;
+      margin-top: auto;
     }
 
-    .btn-send:hover {
-      background: #32251e;
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 850px) {
-      .contact-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-      }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; gap: 32px; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .hero-image-wrapper { height: 320px; }
+      .contact-container { grid-template-columns: 1fr; gap: 30px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER MODERNO CON STILE GIALLO ORIGINALE -->
+  <!-- NAVIGATION HEADER -->
   <header>
     <div class="header-container">
-      <a href="index.html" class="brand-logo">
+      <div class="brand-logo" onclick="switchTab('home')">
         RISE
         <span class="brand-subtitle">BAKERY</span>
-      </a>
+      </div>
       <nav>
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Location</a></li>
-          <li><a href="#">Bakery</a></li>
-          <li><a href="#">News</a></li>
-          <li><a href="#">Wholesale</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><button id="nav-home" class="active" onclick="switchTab('home')">Home</button></li>
+          <li><button onclick="switchTab('home'); setTimeout(() => document.getElementById('menu').scrollIntoView({behavior:'smooth'}), 100)">Bakery Counter</button></li>
+          <li><button id="nav-contact" onclick="switchTab('contact')">Contact</button></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- SEZIONE CONTATTI -->
-  <main class="contact-container">
-    
-    <!-- COLONNA SINISTRA: FOTO E MAPPA -->
-    <div class="store-card">
-      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Rise Bakery Storefront" class="store-img">
-      <iframe 
-        class="map-box"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.578!2d4.8943!3d52.3564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609912061e8cd%3A0x83e28495bc27d14!2sAlbert%20Cuypstraat%20208H%2C%201073%20BM%20Amsterdam!5e0!3m2!1sen!2snl!4v1680000000000!5m2!1sen!2snl" 
-        loading="lazy">
-      </iframe>
-    </div>
+  <!-- HOME PAGE VIEW -->
+  <main id="view-home" class="view-section active-view">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Artisan Sourdough & French Pastries</h1>
+        <p>Baked fresh every morning in De Pijp, right behind the Albert Cuyp market.</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">View Daily Selection &rarr;</button>
+          <button class="btn-secondary" onclick="switchTab('contact')">Find Us & Contact</button>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=80" alt="Rise Bakery Fresh Bread">
+        <div class="location-badge">📍 Albert Cuypstraat 208 H, Amsterdam</div>
+      </div>
+    </section>
 
-    <!-- COLONNA DESTRA: DATI E FORM -->
-    <div class="contact-info">
-      <h1>Get in Touch</h1>
-
-      <div class="info-group">
-        <h3>Address</h3>
-        <p>RISE BAKERY<br>Albert Cuypstraat 208 H<br>1073 BM Amsterdam</p>
+    <section id="menu" class="menu-section">
+      <div class="section-title">
+        <h2>Fresh Daily Counter</h2>
+        <p>Handcrafted sourdough bread and authentic French viennoiserie.</p>
       </div>
 
-      <div class="info-group">
-        <h3>Email</h3>
-        <p><a href="mailto:info@risebakery.nl">info@risebakery.nl</a></p>
+      <div class="products-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Country Sourdough">
+          <div class="card-body">
+            <div class="card-header">
+              <span class="card-title">Country Sourdough</span>
+              <span class="card-price">€6.50</span>
+            </div>
+            <p class="card-desc">48-hour slow fermentation with organic wheat & rye flour.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Butter Croissant">
+          <div class="card-body">
+            <div class="card-header">
+              <span class="card-title">Butter Croissant</span>
+              <span class="card-price">€3.20</span>
+            </div>
+            <p class="card-desc">Traditional laminated French butter pastry, light and flaky.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Cardamom Bun">
+          <div class="card-body">
+            <div class="card-header">
+              <span class="card-title">Cardamom Bun</span>
+              <span class="card-price">€3.80</span>
+            </div>
+            <p class="card-desc">Soft brioche dough filled with organic ceylon cinnamon and fresh cardamom.</p>
+          </div>
+        </div>
       </div>
-
-      <div class="info-group">
-        <h3>Opening Hours</h3>
-        <p>Wednesday – Sunday: 08:00 – 16:00<br>Monday & Tuesday: Closed</p>
-      </div>
-
-      <!-- FORM -->
-      <form class="contact-form" onsubmit="event.preventDefault();">
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Your name">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Your email">
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" rows="4" placeholder="How can we help you?"></textarea>
-        </div>
-        <button type="submit" class="btn-send">Send Message</button>
-      </form>
-    </div>
-
+    </section>
   </main>
+
+  <!-- CONTACT PAGE VIEW -->
+  <main id="view-contact" class="view-section">
+    <div class="contact-container">
+      
+      <div class="store-card">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Rise Bakery Exterior" class="store-img">
+        <iframe 
+          class="map-box"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.578!2d4.8943!3d52.3564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609912061e8cd%3A0x83e28495bc27d14!2sAlbert%20Cuypstraat%20208H%2C%201073%20BM%20Amsterdam!5e0!3m2!1sen!2snl!4v1680000000000!5m2!1sen!2snl" 
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="contact-info">
+        <h1>Get in Touch</h1>
+
+        <div class="info-group">
+          <h3>Address</h3>
+          <p>RISE BAKERY<br>Albert Cuypstraat 208 H<br>1073 BM Amsterdam</p>
+        </div>
+
+        <div class="info-group">
+          <h3>Email</h3>
+          <p><a href="mailto:info@risebakery.nl">info@risebakery.nl</a></p>
+        </div>
+
+        <div class="info-group">
+          <h3>Opening Hours</h3>
+          <p>Wednesday – Sunday: 08:00 – 16:00<br>Monday & Tuesday: Closed</p>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent! (Demo preview)');">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your email address" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="3" placeholder="How can we help you?" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© RISE BAKERY AMSTERDAM — Albert Cuypstraat 208 H, 1073 BM Amsterdam</p>
+  </footer>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active-view'));
+      document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+
+      if (tab === 'home') {
+        document.getElementById('view-home').classList.add('active-view');
+        document.getElementById('nav-home').classList.add('active');
+      } else if (tab === 'contact') {
+        document.getElementById('view-contact').classList.add('active-view');
+        document.getElementById('nav-contact').classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 
 </body>
 </html>
